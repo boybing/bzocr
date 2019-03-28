@@ -16,9 +16,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 def index():
     if request.method == "POST":
         img = request.files.get('photo').read()
-        return bzocr.img(img)
+        os.environ['bf']=bzocr.img(img)
+        return os.environ['bf']
     else:
         return render_template('index.html')
+
+@app.route('/bf', methods=['GET'])
+def bf():
+        return os.environ['bf']
 
 @app.after_request
 def add_header(response):
