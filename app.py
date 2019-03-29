@@ -28,10 +28,21 @@ def index():
 
 @app.route('/bf', methods=['GET'])
 def bf():
-        with open('st.txt', 'r') as f:
-            st=f.read()
-        f.close()
-        return st
+        try:
+            with open('st.txt', 'r') as f:
+                st = f.read()
+            f.close()
+            return st
+        except:
+            return '不存在历史内容!'
+
+
+@app.route('/cl', methods=['GET'])
+def cl():
+        print(os.getcwd())
+        os.system('rm -f ./st.txt')
+        return '内容已清空'
+
 
 @app.after_request
 def add_header(response):
