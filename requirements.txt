@@ -22,4 +22,4 @@ urllib3
 Werkzeug
 aircv
 Pillow
-cv2
+opencv-python
