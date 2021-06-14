@@ -3,6 +3,7 @@
 from flask import *
 import bzocr
 import os
+import time
 
 app = Flask(__name__)
 
@@ -25,6 +26,38 @@ def index():
         return st
     else:
         return render_template('index.html')
+
+@app.route('/pic', methods=['GET', 'POST'])
+def picAdd():
+    if request.method == "POST":
+        files=request.files.getlist('pic')
+        for file in files:
+            filename=file.filename
+            filetype=filename.split('.')[-1]
+            print('文件类型:'+filetype)
+            uploadpath=os.getcwd()+os.sep+'static/file'
+            if not os.path.exists(uploadpath):
+                os.mkdir(uploadpath)
+            filename=str(time.time())+'.'+filetype
+            print("文件名:"+filename)
+            file.save(uploadpath+os.sep+filename)
+        print(os.getcwd())
+        parent=os.getcwd()
+        os.chdir("static")
+        os.chdir("file")
+        print(os.getcwd())
+        os.system("python imageCard.py")
+        for filename in os.listdir(os.getcwd()):
+            if os.path.splitext(filename)[1] == '.jpg':
+                os.remove(filename)
+        os.chdir(parent)
+        # os.chdir(os.path.dirname(os.pardir()))
+        # os.chdir(os.pardir())
+        # print(os.getcwd())
+ 
+        return "文件上传成功 static/file/output.png"
+    else:
+        return render_template('pic.html')
 
 @app.route('/bf', methods=['GET'])
 def bf():

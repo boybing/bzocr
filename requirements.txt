@@ -20,3 +20,5 @@ requests-toolbelt
 six
 urllib3
 Werkzeug
+aircv
+Pillow
