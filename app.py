@@ -45,7 +45,12 @@ def picAdd():
         parent=os.getcwd()
         os.chdir("static")
         os.chdir("file")
-        print(os.getcwd())
+        try:
+            os.remove("output.png")
+            print(os.getcwd())
+        except Exception as e:
+            print(e)
+        
         os.system("python imageCard.py")
         for filename in os.listdir(os.getcwd()):
             if os.path.splitext(filename)[1] == '.jpg':
