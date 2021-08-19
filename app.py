@@ -4,6 +4,7 @@ from flask import *
 import bzocr
 import os
 import time
+import dockerInspect
 
 app = Flask(__name__)
 
@@ -26,6 +27,14 @@ def index():
         return st
     else:
         return render_template('index.html')
+
+@app.route('/d', methods=['GET', 'POST'])
+def docker():
+    if request.method == "POST":
+        img = request.files.get('file').read()
+        st=dockerInspect.dockerformate(img)
+
+        return st
 
 @app.route('/pic', methods=['GET', 'POST'])
 def picAdd():
