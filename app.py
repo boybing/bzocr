@@ -5,6 +5,7 @@ import bzocr
 import os
 import time
 import dockerInspect
+import bztr
 
 app = Flask(__name__)
 
@@ -27,6 +28,34 @@ def index():
         return st
     else:
         return render_template('index.html')
+
+@app.route('/trr', methods=['GET', 'POST'])
+def trr():
+    if request.method == "GET":
+        try:
+            st = bztr.getTr()
+            os.system("rm -rf tr.txt")
+            os.system("touch tr.txt")
+            with open('tr.txt', 'w') as f:
+                f.write(st[0])
+                f.flush()
+            f.close()
+            return st[1]
+        except Exception as e:
+            e.__suppress_context__
+            return "更新失败！"
+
+@app.route('/tr', methods=['GET', 'POST'])
+def tr():
+    if request.method == "GET":
+        resp=""
+        try:
+            with open('tr.txt', 'r') as f:
+                resp=f.read()
+            f.close()
+        except Exception as e:
+            e.__suppress_context__
+        return render_template('tracker.html',info=resp)
 
 @app.route('/d', methods=['GET', 'POST'])
 def docker():
