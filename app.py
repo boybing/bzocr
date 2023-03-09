@@ -6,6 +6,9 @@ import os
 import time
 import dockerInspect
 import bztr
+import mp4
+import json
+
 
 app = Flask(__name__)
 
@@ -28,6 +31,32 @@ def index():
         return st
     else:
         return render_template('index.html')
+
+@app.route("/v")
+def video():
+    return render_template("output.html")
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    array_param = request.form['array_param'].split(',')
+
+    font_size = request.form['font_size']
+    interval_time = request.form['interval_time']
+
+    # 把列表写入到一个文件中
+    # with open("array.json", "w") as f:
+    #     json.dump(array_param, f)
+    # with open("font_size.json", "w") as f:
+    #     json.dump(font_size, f)
+    # with open("interval_time.json", "w") as f:
+    #     json.dump(interval_time, f)
+
+    # do something with the parameters
+    # 测试代码：定义一个数组、文字大小、显示时间，并调用generate_video方法生成视频文件 
+    # mp4.gv()
+    mp4.generate_video(array_param, int(font_size), int(interval_time))
+    return '文件位置/static/output.mp4 后台获取到的参数：数组参数：{} '.format(array_param)
 
 @app.route('/trr', methods=['GET', 'POST'])
 def trr():
