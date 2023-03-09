@@ -56,7 +56,19 @@ def submit():
     # do something with the parameters
     # 测试代码：定义一个数组、文字大小、显示时间，并调用generate_video方法生成视频文件 
     # mp4.gv()
+    # 定义ffmpeg命令和参数的列表
+    cmd = ['rm', '-rf', BASE_DIR+'/static/output.mp4']
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        print(e)
     mp4.generate_video(array_param, int(font_size), int(interval_time))
+    # 定义ffmpeg命令和参数的列表
+    cmd = ['rm', '-rf', BASE_DIR+'/static/output1.mp4']
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        print(e)
     # 定义ffmpeg命令和参数的列表
     cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
 
