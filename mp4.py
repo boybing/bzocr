@@ -19,7 +19,7 @@ def generate_video(strings, font_size, duration):
         images.append(image)
 
     # 调用images_to_video函数将图片列表转换为视频，并保存为output.mp4文件 
-    images_to_video(images,duration,BASE_PATH+"/static/output.mp4") 
+    images_to_video(images,duration,BASE_PATH+"/static/output.WebM") 
 
 # 定义一个函数，将字符串转换为图片，并返回图片对象
 def string_to_image(string, font_size):
