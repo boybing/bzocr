@@ -58,14 +58,14 @@ def submit():
     # mp4.gv()
     mp4.generate_video(array_param, int(font_size), int(interval_time))
     # 定义ffmpeg命令和参数的列表
-    cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output.mp4']
+    cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
 
     # 调用subprocess.run函数，捕获异常
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         print(e)
-    return '文件位置/static/output.mp4 后台获取到的参数：数组参数：{} '.format(array_param)
+    return '文件位置/static/output1.mp4 后台获取到的参数：数组参数：{} '.format(array_param)
 
 @app.route('/trr', methods=['GET', 'POST'])
 def trr():
