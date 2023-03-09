@@ -19,7 +19,7 @@ def generate_video(strings, font_size, duration):
         images.append(image)
 
     # 调用images_to_video函数将图片列表转换为视频，并保存为output.mp4文件 
-    images_to_video(images,duration,BASE_PATH+"/static/output.WebM") 
+    images_to_video(images,duration,BASE_PATH+"/static/output.mp4") 
 
 # 定义一个函数，将字符串转换为图片，并返回图片对象
 def string_to_image(string, font_size):
@@ -49,7 +49,7 @@ def images_to_video(images,duration,filename):
     frame_rate = 24 # 视频帧率，每秒显示多少张图片
     # 获取第一张图片的尺寸，并创建一个视频写入对象，指定输出文件名、编码器、帧率和尺寸 
     width,height=images[0].size 
-    video_writer=cv2.VideoWriter(filename,cv2.VideoWriter_fourcc(*"VP80"),frame_rate,(width,height))
+    video_writer=cv2.VideoWriter(filename,cv2.VideoWriter_fourcc(*"MP4V"),frame_rate,(width,height))
     
     for image in images:
         # 将每张图片转换为numpy数组，并按BGR顺序排列颜色通道（opencv默认使用BGR格式）
