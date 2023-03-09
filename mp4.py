@@ -49,7 +49,7 @@ def images_to_video(images,duration,filename):
     frame_rate = 24 # 视频帧率，每秒显示多少张图片
     # 获取第一张图片的尺寸，并创建一个视频写入对象，指定输出文件名、编码器、帧率和尺寸 
     width,height=images[0].size 
-    video_writer=cv2.VideoWriter(filename,cv2.VideoWriter_fourcc(*"H264"),frame_rate,(width,height))
+    video_writer=cv2.VideoWriter(filename,cv2.VideoWriter_fourcc(*"mp4v"),frame_rate,(width,height))
     
     for image in images:
         # 将每张图片转换为numpy数组，并按BGR顺序排列颜色通道（opencv默认使用BGR格式）
