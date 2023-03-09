@@ -14,7 +14,7 @@
             </form>
         
             <video controls>
-               <video controls> <source src="output1.WebM" type="video/webm"> <source src="output1.mp4" type="video/mp4"> <p>Your browser doesn’t support HTML5 video.</p> </video>
+               <video controls> <source src="{{url_for('static', filename='output.WebM', _external=True)}}" type="video/webm"> <source src="{{url_for('static', filename='output.mp4', _external=True)}}" type="video/mp4"> <p>Your browser doesn’t support HTML5 video.</p> </video>
             </video>
 
     </body>
