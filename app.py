@@ -37,6 +37,26 @@ def index():
 def video():
     return render_template("output.html")
 
+@app.route("/s")
+def show():
+    return redirect('/static/output1.mp4')
+
+@app.route("/c")
+def trans():
+    if os.path.exists(BASE_DIR+'/static/output.mp4'):
+        # 定义ffmpeg命令和参数的列表
+        cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
+
+        # 调用subprocess.run函数，捕获异常
+        try:
+            subprocess.run(cmd, check=True)
+        except subprocess.CalledProcessError as e:
+            print(e)
+        return "开始转换,若/s不是空页面说明转换成功"
+    else:
+        return "请重试,文件未就绪"
+
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -45,39 +65,18 @@ def submit():
     font_size = request.form['font_size']
     interval_time = request.form['interval_time']
 
-    # 把列表写入到一个文件中
-    # with open("array.json", "w") as f:
-    #     json.dump(array_param, f)
-    # with open("font_size.json", "w") as f:
-    #     json.dump(font_size, f)
-    # with open("interval_time.json", "w") as f:
-    #     json.dump(interval_time, f)
-
-    # do something with the parameters
-    # 测试代码：定义一个数组、文字大小、显示时间，并调用generate_video方法生成视频文件 
-    # mp4.gv()
-    # 定义ffmpeg命令和参数的列表
-    cmd = ['rm', '-rf', BASE_DIR+'/static/output.mp4']
-    try:
-        subprocess.run(cmd, check=True)
-    except subprocess.CalledProcessError as e:
-        print(e)
-    mp4.generate_video(array_param, int(font_size), int(interval_time))
-    # 定义ffmpeg命令和参数的列表
-    cmd = ['rm', '-rf', BASE_DIR+'/static/output1.mp4']
+    cmd = ['rm', '-rf', BASE_DIR+'/static/output.mp4',BASE_DIR+'/static/output1.mp4']
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         print(e)
     # 定义ffmpeg命令和参数的列表
-    cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
-
-    # 调用subprocess.run函数，捕获异常
+    cmd = ['python', 'mp4.py']+array_param+[int(font_size)]+[float(interval_time)]
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         print(e)
-    return '文件位置/static/output1.mp4 后台获取到的参数：数组参数：{} '.format(array_param)
+    return '运行/c 后台获取到的参数：数组参数：{} '.format(array_param)
 
 @app.route('/trr', methods=['GET', 'POST'])
 def trr():
