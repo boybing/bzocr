@@ -26,7 +26,7 @@ def string_to_image(string, font_size):
     BASE_PATH=os.path.dirname(os.path.abspath(__file__)) 
     font_path = BASE_PATH+"/arial.ttf" # 字体文件路径
     bg_color = (0, 0, 0) # 背景颜色，RGB格式
-    image_size = (640, 480) # 图片尺寸，宽度和高度
+    image_size = (768, 480) # 图片尺寸，宽度和高度
     # 创建一个空白的图片对象，使用背景颜色填充
     image = PIL.Image.new("RGB", image_size, bg_color)
     # 创建一个绘图对象，用于在图片上绘制文字
