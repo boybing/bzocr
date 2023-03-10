@@ -69,14 +69,13 @@ def submit():
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         print(e)
-    # # 定义ffmpeg命令和参数的列表
-    # cmd = ['python3', BASE_DIR+'/mp4.py']+array_param+['-f',str(font_size)]+['-d',str(interval_time)]
-    # try:
-    #     subprocess.Popen(cmd)
-    # except subprocess.CalledProcessError as e:
-    #     print(e)
-    mp4.generate_video(array_param, int(font_size), int(interval_time))
-    return '/s 查看生成视频 数组参数：{} '.format(array_param)
+    # 定义ffmpeg命令和参数的列表
+    cmd = ['python', 'mp4.py']+array_param+[int(font_size)]+[float(interval_time)]
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        print(e)
+    return '运行/c 后台获取到的参数：数组参数：{} '.format(array_param)
 
 @app.route('/trr', methods=['GET', 'POST'])
 def trr():
