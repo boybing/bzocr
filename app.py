@@ -70,7 +70,7 @@ def submit():
     except subprocess.CalledProcessError as e:
         print(e)
     # 定义ffmpeg命令和参数的列表
-    cmd = ['python', 'mp4.py']+array_param+[int(font_size)]+[float(interval_time)]
+    cmd = ['python3', BASE_DIR+'/mp4.py']+array_param+['-f',str(font_size)]+['-d',str(interval_time)]
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:

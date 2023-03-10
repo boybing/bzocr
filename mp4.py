@@ -77,14 +77,14 @@ def main():
     
     # 添加三个参数：strings（字符串数组），font_size（字体大小），duration（视频时长） 
     parser.add_argument("strings", nargs="+", help="a list of strings to convert to video")
-    parser.add_argument("font_size", type=int, help="the font size of the text")
-    parser.add_argument("duration", type=float, help="the duration of the video in seconds")
+    parser.add_argument("-f", "--font_size", help="the font size of the text")
+    parser.add_argument("-d", "--duration", help="the duration of the video in seconds")
 
     # 解析命令行参数，并赋值给args变量 
     args = parser.parse_args()
 
     # 调用generate_video函数，传入args中的参数值 
-    generate_video(args.strings, args.font_size, args.duration)
+    generate_video(args.strings, int(args.font_size), int(args.duration))
 
 if __name__ == '__main__':
     # generate_video(["str","test"], 2, 2)
