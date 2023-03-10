@@ -36,7 +36,7 @@ def video():
     return render_template("output.html")
 
 @app.route("/s1")
-def show():
+def show1():
     return redirect('/static/output1.mp4')
 
 @app.route("/s")
