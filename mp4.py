@@ -3,7 +3,6 @@ import PIL.Image, PIL.ImageDraw, PIL.ImageFont
 import cv2
 import numpy as np
 import os
-import json
 import argparse
 
 
@@ -62,29 +61,19 @@ def images_to_video(images,duration,filename):
 
     video_writer.release() 
 
-def gv():
-    with open("array.json", "r") as f:
-        lst = json.load(f)
-    with open("font_size.json", "r") as f:
-        ft = json.load(f)
-    with open("interval_time.json", "r") as f:
-        it = json.load(f)
-    generate_video(lst, int(ft[0]), int(it[0]))
-
 def main():
     # 创建一个解析器对象，用于处理命令行参数 
     parser = argparse.ArgumentParser()
     
     # 添加三个参数：strings（字符串数组），font_size（字体大小），duration（视频时长） 
     parser.add_argument("strings", nargs="+", help="a list of strings to convert to video")
-    parser.add_argument("font_size", type=int, help="the font size of the text")
-    parser.add_argument("duration", type=float, help="the duration of the video in seconds")
-
+    parser.add_argument("-f", "--font_size", help="the font size of the text")
+    parser.add_argument("-d", "--duration", help="the duration of the video in seconds")
     # 解析命令行参数，并赋值给args变量 
     args = parser.parse_args()
 
     # 调用generate_video函数，传入args中的参数值 
-    generate_video(args.strings, args.font_size, args.duration)
+    generate_video(args.strings, int(args.font_size), int(args.duration))
 
 if __name__ == '__main__':
     # generate_video(["str","test"], 2, 2)
