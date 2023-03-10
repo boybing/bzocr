@@ -6,6 +6,8 @@ import os
 import time
 import dockerInspect
 import bztr
+import mp4
+import json
 import subprocess
 
 
@@ -35,28 +37,24 @@ def index():
 def video():
     return render_template("output.html")
 
-@app.route("/s1")
-def show1():
-    return redirect('/static/output1.mp4')
-
 @app.route("/s")
 def show():
     return redirect('/static/output.mp4')
 
-@app.route("/c")
-def trans():
-    if os.path.exists(BASE_DIR+'/static/output.mp4'):
-        # 定义ffmpeg命令和参数的列表
-        cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
+# @app.route("/c")
+# def trans():
+#     if os.path.exists(BASE_DIR+'/static/output.mp4'):
+#         # 定义ffmpeg命令和参数的列表
+#         cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
 
-        # 调用subprocess.run函数，捕获异常
-        try:
-            subprocess.Popen(cmd)
-        except subprocess.CalledProcessError as e:
-            print(e)
-        return "开始转换,若/s不是空页面说明转换成功"
-    else:
-        return "请重试,文件未就绪"
+#         # 调用subprocess.run函数，捕获异常
+#         try:
+#             subprocess.Popen(cmd)
+#         except subprocess.CalledProcessError as e:
+#             print(e)
+#         return "开始转换,若/s不是空页面说明转换成功"
+#     else:
+#         return "请重试,文件未就绪"
 
 
 
@@ -69,16 +67,16 @@ def submit():
 
     cmd = ['rm', '-rf', BASE_DIR+'/static/output.mp4',BASE_DIR+'/static/output1.mp4']
     try:
-        subprocess.Popen(cmd)
+        subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         print(e)
     # 定义ffmpeg命令和参数的列表
-    cmd = ['python', BASE_DIR+'/mp4.py']+array_param+['-f',str(font_size)]+['-d',str(interval_time)]
+    cmd = ['python3', BASE_DIR+'/mp4.py']+array_param+['-f',str(font_size)]+['-d',str(interval_time)]
     try:
         subprocess.Popen(cmd)
     except subprocess.CalledProcessError as e:
         print(e)
-    return '运行/c 视频转换 /s转换前视频 /s1转换后视频 数组参数：{} '.format(array_param)
+    return '/s 查看生成视频 数组参数：{} '.format(array_param)
 
 @app.route('/trr', methods=['GET', 'POST'])
 def trr():
