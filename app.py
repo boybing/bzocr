@@ -75,7 +75,7 @@ def submit():
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         print(e)
-    return '运行/c 后台获取到的参数：数组参数：{} '.format(array_param)
+    return '运行/s查看视频 参数：{} '.format(array_param)
 
 @app.route('/trr', methods=['GET', 'POST'])
 def trr():
