@@ -40,20 +40,24 @@ def video():
 def show():
     return redirect('/static/output.mp4')
 
-# @app.route("/c")
-# def trans():
-#     if os.path.exists(BASE_DIR+'/static/output.mp4'):
-#         # 定义ffmpeg命令和参数的列表
-#         cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
+@app.route("/s1")
+def show1():
+    return redirect('/static/output1.mp4')
 
-#         # 调用subprocess.run函数，捕获异常
-#         try:
-#             subprocess.Popen(cmd)
-#         except subprocess.CalledProcessError as e:
-#             print(e)
-#         return "开始转换,若/s不是空页面说明转换成功"
-#     else:
-#         return "请重试,文件未就绪"
+@app.route("/c")
+def trans():
+    if os.path.exists(BASE_DIR+'/static/output.mp4'):
+        # 定义ffmpeg命令和参数的列表
+        cmd = ['ffmpeg', '-i', BASE_DIR+'/static/output.mp4', '-vcodec', 'libx264', BASE_DIR+'/static/output1.mp4']
+        cmd_str = ' '.join(cmd)
+        # 调用subprocess.run函数，捕获异常
+        try:
+            os.system(cmd_str)
+        except Exception as e:
+            print(e)
+        return "开始转换,若/s1不是空页面说明转换成功"
+    else:
+        return "请重试,文件未就绪"
 
 
 
@@ -65,17 +69,19 @@ def submit():
     interval_time = request.form['interval_time']
 
     cmd = ['rm', '-rf', BASE_DIR+'/static/output.mp4',BASE_DIR+'/static/output1.mp4']
+    cmd_str = ' '.join(cmd)
     try:
-        subprocess.run(cmd, check=True)
-    except subprocess.CalledProcessError as e:
+        os.system(cmd_str)
+    except Exception as e:
         print(e)
     # 定义ffmpeg命令和参数的列表
     cmd = ['python', BASE_DIR+'/mp4.py']+array_param+['-f',str(font_size)]+['-d',str(interval_time)]
+    cmd_str = ' '.join(cmd)
     try:
-        subprocess.run(cmd, check=True)
-    except subprocess.CalledProcessError as e:
+        os.system(cmd_str)
+    except Exception as e:
         print(e)
-    return '运行/s查看视频 参数：{} '.format(array_param)
+    return '运行/s查看视频/c视频转换/s1转换后的视频可直接播放 参数：{} '.format(array_param)
 
 @app.route('/trr', methods=['GET', 'POST'])
 def trr():
@@ -185,4 +191,4 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
