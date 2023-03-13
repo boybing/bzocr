@@ -59,7 +59,50 @@ def trans():
     else:
         return "请重试,文件未就绪"
 
+@app.route('/sub', methods=['POST'])
+def sub():
+    parent=os.getcwd()
+    os.chdir("static")
+    os.chdir("file")
+    try:
+        os.remove("m.pdf")
+        print(os.getcwd())
+    except Exception as e:
+        print(e)
+    
+    os.system("python mathsub1.py")
+    os.chdir(parent)
+    return "文件上传成功 static/file/m.pdf"
 
+@app.route('/sub1', methods=['POST'])
+def sub1():
+    parent=os.getcwd()
+    os.chdir("static")
+    os.chdir("file")
+    try:
+        os.remove("m.pdf")
+        print(os.getcwd())
+    except Exception as e:
+        print(e)
+    
+    os.system("python mathsub.py")
+    os.chdir(parent)
+    return "文件上传成功 static/file/m.pdf"
+
+@app.route('/sub2', methods=['POST'])
+def sub2():
+    parent=os.getcwd()
+    os.chdir("static")
+    os.chdir("file")
+    try:
+        os.remove("m.pdf")
+        print(os.getcwd())
+    except Exception as e:
+        print(e)
+    
+    os.system("python mathmorethan.py")
+    os.chdir(parent)
+    return "文件上传成功 static/file/m.pdf"
 
 @app.route('/submit', methods=['POST'])
 def submit():
