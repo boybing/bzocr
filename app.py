@@ -18,6 +18,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Routing for your application.
 ###
 
+@app.after_request
+def add_header(r):
+    r.headers["Cache-Control"] = "no-store"
+    return r
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
