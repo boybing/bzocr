@@ -74,6 +74,11 @@ def sub():
     os.chdir(parent)
     return "文件上传成功 static/file/m.pdf"
 
+@app.route('/word')
+def word():
+    pdf_path = '/path/to/your/pdf/file.pdf'
+    return render_template('pdf.html', pdf_path=pdf_path)
+
 @app.route('/sub1', methods=['POST'])
 def sub1():
     parent=os.getcwd()
