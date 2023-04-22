@@ -2,7 +2,7 @@
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-pdfmetrics.registerFont(TTFont('SIMSUN-Bold', r'C:\Users\39500\Desktop\math\SIMSUN.ttf'))
+pdfmetrics.registerFont(TTFont('SIMSUN-Bold', r'./SIMSUN.ttf'))
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
