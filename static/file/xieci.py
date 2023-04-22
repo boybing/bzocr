@@ -58,7 +58,7 @@ def to_PDF():
     print(array)
 
     # 创建一个canvas对象，指定文件名和纸张大小
-    c = canvas.Canvas("demo.pdf", pagesize=A4)
+    c = canvas.Canvas("m.pdf", pagesize=A4)
 
     # 设置原点为左下角的边距处
     c.translate(MARGIN, MARGIN)
@@ -93,6 +93,11 @@ def to_PDF():
 
     # 保存PDF文件
     c.save()
-
+    
 if __name__ == '__main__':
-    to_PDF()
+    if len(sys.argv) > 1:
+        string = sys.argv[1]
+        result = to_PDF(string)
+        print(result)
+    else:
+        print("请提供一个字符串作为参数")
