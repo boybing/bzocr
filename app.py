@@ -76,7 +76,7 @@ def sub():
 
 @app.route('/word')
 def word():
-    pdf_path = '/path/to/your/pdf/file.pdf'
+    pdf_path = url_for('static', filename='file/m.pdf')
     return render_template('pdf.html', pdf_path=pdf_path)
 
 @app.route('/sub1', methods=['POST'])
