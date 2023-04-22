@@ -96,7 +96,8 @@ def to_PDF(string):
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         string = sys.argv[1]
-        result = to_PDF(string)
-        print(result)
+        filtered_string = re.sub(r'[^\u4e00-\u9fff]+', '', string)
+        return filtered_string
+        to_PDF(filtered_string)
     else:
         print("请提供一个字符串作为参数")
