@@ -77,7 +77,8 @@ def sub():
     
     os.system("python mathsub1.py")
     os.chdir(parent)
-    return "文件上传成功 static/file/m.pdf"
+    pdf_path = url_for('static', filename='file/m.pdf')
+    return render_template('pdf.html', pdf_path=pdf_path)
 
 @app.route('/word', methods=['POST'])
 def word():
@@ -110,7 +111,8 @@ def sub1():
     
     os.system("python mathsub.py")
     os.chdir(parent)
-    return "文件上传成功 static/file/m.pdf"
+    pdf_path = url_for('static', filename='file/m.pdf')
+    return render_template('pdf.html', pdf_path=pdf_path)
 
 @app.route('/sub2', methods=['POST'])
 def sub2():
@@ -125,7 +127,8 @@ def sub2():
     
     os.system("python mathmorethan.py")
     os.chdir(parent)
-    return "文件上传成功 static/file/m.pdf"
+    pdf_path = url_for('static', filename='file/m.pdf')
+    return render_template('pdf.html', pdf_path=pdf_path)
 
 @app.route('/submit', methods=['POST'])
 def submit():
