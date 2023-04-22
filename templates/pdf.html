@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF 预览和打印</title>
+    <script>
+        function printPDF() {
+            var iframe = document.getElementById('pdfViewer');
+            iframe.contentWindow.print();
+        }
+    </script>
+</head>
+<body>
+    <iframe id="pdfViewer" src="/path/to/your/pdf/file.pdf" width="500" height="600"></iframe><br>
+    <button onclick="printPDF()">打印 PDF</button>
+</body>
+</html>
