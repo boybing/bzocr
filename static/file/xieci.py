@@ -45,9 +45,7 @@ def new_page(canvas):
     canvas.showPage()
     canvas.translate(MARGIN, MARGIN) # 设置原点为左下角的边距处
 
-def to_PDF():
-    string = ''' 首斗踪 织 迹 牵 浮 萤 萍 闷 珠 响 摇 搬 躺 息 晶 消 停 呢 腰 朵
-    坡 唱 沉 膀 伸 翅 潮 流 棍 角 汤 露 扇 荷 椅 柔 爱 空 机 泉 展 湿 透'''
+def to_PDF(string):
     # 替换空格，回车，换行等字符为空字符串
     string = string.replace(" ", "").replace("\n", "").replace("\r", "")
     # 按照空字符串连接
