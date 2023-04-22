@@ -1,6 +1,7 @@
 #encoding:utf-8
 
 import sys
+import re
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 pdfmetrics.registerFont(TTFont('SIMSUN-Bold', r'./SIMSUN.ttf'))
