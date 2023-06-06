@@ -53,34 +53,16 @@ def read_file(filename):
     return text  # 返回文件内容
 
 # 定义一个主函数，用于获取用户输入的文本或文件名并调用speak函数
-def main():
-    print("欢迎使用文本AI朗读器！")
-    print("请输入你想朗读的文本，或者输入一个文本文件名，或者输入q退出。")
-    print("请选择你想要使用的语音合成方式：1. 本地 2. 在线")
-    while True:
-        mode = input("> ")  # 获取用户输入的模式
-        try:
-            mode = int(mode)  # 将用户输入的模式转换为整数
-            if mode in [1, 2]:  # 如果模式是1或2，跳出循环
-                break
-            else:  # 否则，提示用户输入无效，并重新输入
-                print("请输入有效的序号。")
-        except:  # 如果用户输入的模式不能转换为整数，提示用户输入无效，并重新输入
-            print("请输入有效的序号。")
-    while True:
-        input_text = input("> ")  # 获取用户输入的文本或文件名
-        if input_text == "q":  # 如果用户输入q，退出程序
-            break
-        elif input_text.endswith(".txt"):  # 如果用户输入以.txt结尾，认为是一个文本文件名，调用read_file函数读取文件内容，并赋值给text变量
-            text = read_file(input_text)
-        else:  # 否则，认为是一个文本，直接赋值给text变量
-            text = input_text
-        if mode == 1:  # 如果模式是1，表示使用本地语音合成
-            voice = choose_voice()  # 调用choose_voice函数获取用户选择的声音
-            speak_local(text, voice)  # 调用speak_local函数将文本转换为语音并播放（本地）
-        elif mode == 2:  # 如果模式是2，表示使用在线语音合成
-            speak_online(text)  # 调用speak_online函数将文本转换为语音并播放（在线）
-
-# 调用主函数
-if __name__ == "__main__":
-    main()
+def creatmp3(input_text):
+    mod=2
+    if input_text == "q":  # 如果用户输入q，退出程序
+        break
+    elif input_text.endswith(".txt"):  # 如果用户输入以.txt结尾，认为是一个文本文件名，调用read_file函数读取文件内容，并赋值给text变量
+        text = read_file(input_text)
+    else:  # 否则，认为是一个文本，直接赋值给text变量
+        text = input_text
+    if mode == 1:  # 如果模式是1，表示使用本地语音合成
+        voice = choose_voice()  # 调用choose_voice函数获取用户选择的声音
+        speak_local(text, voice)  # 调用speak_local函数将文本转换为语音并播放（本地）
+    elif mode == 2:  # 如果模式是2，表示使用在线语音合成
+        speak_online(text)  # 调用speak_online函数将文本转换为语音并播放（在线）
