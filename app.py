@@ -110,7 +110,7 @@ def mp3():
     except Exception as e:
         print(e)
     
-    os.system("python reading.py ")
+    os.system("python reading.py "+input)
     os.chdir(parent)
     return render_template('mp3.html')
 
