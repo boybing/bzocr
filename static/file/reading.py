@@ -56,7 +56,7 @@ def read_file(filename):
 def creatmp3(input_text):
     mod=2
     if input_text == "":  # 如果用户输入q，退出程序
-        passs
+        pass
     elif input_text.endswith(".txt"):  # 如果用户输入以.txt结尾，认为是一个文本文件名，调用read_file函数读取文件内容，并赋值给text变量
         text = read_file(input_text)
     else:  # 否则，认为是一个文本，直接赋值给text变量
