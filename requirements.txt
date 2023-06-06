@@ -26,3 +26,5 @@ opencv-python
 opencv-python-headless==4.2.0.32
 reportlab
 pypinyin
+pyttsx3
+gtts
