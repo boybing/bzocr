@@ -48,4 +48,4 @@ def creatMp3(input_text):
 if __name__ == "__main__":
     if len(sys.argv) > 1:  # 如果有命令行参数
         input_text = sys.argv[1]  # 获取第一个命令行参数作为输入文本
-        creatMp3(input_text,200)  # 调用creatMp3函数并传递输入文本
+        creatMp3(input_text,2000)  # 调用creatMp3函数并传递输入文本
