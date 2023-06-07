@@ -9,7 +9,7 @@ language = "zh"  # 中文
 speed = 150  # 语速
 
 # 定义一个函数，用于将文本转换为语音并播放（在线）
-def speak_online(text, pause_duration):
+def speak_online(text):
     # 将文本拆分为多个部分
     parts = text.split("$$")
     # 创建一个空的音频片段
@@ -24,7 +24,7 @@ def speak_online(text, pause_duration):
         combined += speech
         # 如果不是最后一部分，则添加静音
         if i < len(parts) - 1:
-            combined += AudioSegment.silent(duration=pause_duration)
+            combined += AudioSegment.silent(duration=2000)
     # 播放组合音频
     combined.export("temp.mp3", format="mp3")
 
@@ -48,4 +48,4 @@ def creatMp3(input_text):
 if __name__ == "__main__":
     if len(sys.argv) > 1:  # 如果有命令行参数
         input_text = sys.argv[1]  # 获取第一个命令行参数作为输入文本
-        creatMp3(input_text,2000)  # 调用creatMp3函数并传递输入文本
+        creatMp3(input_text)  # 调用creatMp3函数并传递输入文本
