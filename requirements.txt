@@ -28,3 +28,4 @@ reportlab
 pypinyin
 pyttsx3
 gtts
+pydub
