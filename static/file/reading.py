@@ -1,5 +1,6 @@
 # 导入必要的库
 from gtts import gTTS  # 用于在线语音合成
+from pydub import AudioSegment
 import os  # 用于操作系统命令
 import sys  # 用于获取命令行参数
 
@@ -8,10 +9,24 @@ language = "zh"  # 中文
 speed = 150  # 语速
 
 # 定义一个函数，用于将文本转换为语音并播放（在线）
-def speak_online(text):
-    tts = gTTS(text=text, lang=language)  # 创建一个gTTS对象，将文本和语言传递给它
-    filename = "temp.mp3"  # 定义一个临时文件名，用于保存语音文件
-    tts.save(filename)  # 将语音文件保存到临时文件中
+def speak_online(text, pause_duration):
+    # 将文本拆分为多个部分
+    parts = text.split("$$")
+    # 创建一个空的音频片段
+    combined = AudioSegment.empty()
+    # 遍历每个部分
+    for i, part in enumerate(parts):
+        # 为当前部分生成语音
+        tts = gTTS(text=part, lang="zh")
+        tts.save("temp.mp3")
+        speech = AudioSegment.from_mp3("temp.mp3")
+        # 将语音添加到组合音频中
+        combined += speech
+        # 如果不是最后一部分，则添加静音
+        if i < len(parts) - 1:
+            combined += AudioSegment.silent(duration=pause_duration)
+    # 播放组合音频
+    combined.export("temp.mp3", format="mp3")
 
 # 定义一个函数，用于读取文本文件并返回文件内容
 def read_file(filename):
@@ -33,4 +48,4 @@ def creatMp3(input_text):
 if __name__ == "__main__":
     if len(sys.argv) > 1:  # 如果有命令行参数
         input_text = sys.argv[1]  # 获取第一个命令行参数作为输入文本
-        creatMp3(input_text)  # 调用creatMp3函数并传递输入文本
+        creatMp3(input_text,200)  # 调用creatMp3函数并传递输入文本
