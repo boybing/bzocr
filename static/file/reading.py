@@ -11,7 +11,7 @@ speed = 150  # 语速
 # 定义一个函数，用于将文本转换为语音并播放（在线）
 def speak_online(text):
     # 将文本拆分为多个部分
-    parts = text.split("$$")
+    parts = text.split(" ")
     # 创建一个空的音频片段
     combined = AudioSegment.empty()
     # 遍历每个部分
