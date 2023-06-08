@@ -43,7 +43,7 @@ def rd():
     draw = ImageDraw.Draw(img)
 
     # 设置字体和字号
-    font = ImageFont.truetype('arial.ttf', 16)
+    font = ImageFont.truetype('SIMSUN.ttf', 16)
 
     # 设置起始位置和间距
     x = 10 # 横坐标起始位置
