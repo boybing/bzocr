@@ -18,14 +18,14 @@ def speak_online(text):
     for i, part in enumerate(parts):
         # 为当前部分生成语音
         tts = gTTS(text=part, lang="zh")
-        tts.save("temp.mp3")
+        tts.save("tst.mp3")
         speech = AudioSegment.from_mp3("temp.mp3")
         # 将语音添加到组合音频中
         combined += speech
         # 如果不是最后一部分，则添加静音
         if i < len(parts) - 1:
             combined += AudioSegment.silent(duration=2000)
-    # 播放组合音频
+    # 保存组合音频
     combined.export("temp.mp3", format="mp3")
 
 # 定义一个函数，用于读取文本文件并返回文件内容
