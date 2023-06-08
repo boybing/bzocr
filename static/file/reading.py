@@ -13,7 +13,7 @@ speed = 150  # 语速
 def speak_online(tt):
     # 将文本拆分为多个部分
     # 创建一个空的音频片段
-    if tt='rd':
+    if tt =='rd':
         answer=rdm.rd()
         combined = AudioSegment.empty()
         for an in answer:
