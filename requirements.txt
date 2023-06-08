@@ -29,3 +29,4 @@ pypinyin
 pyttsx3
 gtts
 pydub
+Pillow
