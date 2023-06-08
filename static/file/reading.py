@@ -9,22 +9,21 @@ language = "zh"  # 中文
 speed = 150  # 语速
 
 # 定义一个函数，用于将文本转换为语音并播放（在线）
-def speak_online(text):
+def speak_online(tt):
     # 将文本拆分为多个部分
-    parts = text.split(" ")
     # 创建一个空的音频片段
     combined = AudioSegment.empty()
     # 遍历每个部分
-    for i, part in enumerate(parts):
-        # 为当前部分生成语音
-        tts = gTTS(text=part, lang="zh")
-        tts.save("tst.mp3")
-        speech = AudioSegment.from_mp3("tst.mp3")
-        # 将语音添加到组合音频中
-        combined += speech
-        # 如果不是最后一部分，则添加静音
-        if i < len(parts) - 1:
-            combined += AudioSegment.silent(duration=2000)
+    tts = gTTS(text=tt, lang="zh")
+    tts.save("tst.mp3")
+    speech = AudioSegment.from_mp3("tst.mp3")
+    # 将语音添加到组合音频中
+    combined += speech
+    combined += AudioSegment.silent(duration=3000)
+    tts = gTTS(text='测试测试', lang="zh")
+    tts.save("tst1.mp3")
+    speech = AudioSegment.from_mp3("tst1.mp3")
+    combined += speech
     # 保存组合音频
     combined.export("temp.mp3", format="mp3")
 
