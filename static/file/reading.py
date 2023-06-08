@@ -28,14 +28,14 @@ def speak_online(tt):
         combined = AudioSegment.empty()
         # 遍历每个部分
         tts = gTTS(text=tt, lang="zh")
-        tts.save("tst.mp3")
+        tts.save("temp.mp3")
         speech = AudioSegment.from_mp3("temp.mp3")
         # 将语音添加到组合音频中
         combined += speech
         combined += AudioSegment.silent(duration=3000)
         tts = gTTS(text='测试测试', lang="zh")
         tts.save("tst1.mp3")
-        speech = AudioSegment.from_mp3("temp.mp3")
+        speech = AudioSegment.from_mp3("tst1.mp3")
         combined += speech
         # 保存组合音频
         combined.export("temp.mp3", format="mp3")
