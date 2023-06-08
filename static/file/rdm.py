@@ -63,7 +63,7 @@ def rd():
     # 打印出所有的题目
     for problem in problems:
         print(problem)
-    return problem
+    return problems
 
 if __name__ == '__main__':
     rd()
