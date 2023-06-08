@@ -19,7 +19,7 @@ def speak_online(text):
         # 为当前部分生成语音
         tts = gTTS(text=part, lang="zh")
         tts.save("tst.mp3")
-        speech = AudioSegment.from_mp3("temp.mp3")
+        speech = AudioSegment.from_mp3("tst.mp3")
         # 将语音添加到组合音频中
         combined += speech
         # 如果不是最后一部分，则添加静音
