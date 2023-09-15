@@ -111,7 +111,7 @@ def word():
     except Exception as e:
         print(e)
     
-    os.system("python xieci.py nopinyin "+input)
+    os.system("python xieci2.py "+input)
     os.chdir(parent)
     pdf_path = url_for('static', filename='file/m.pdf')
     return render_template('pdf.html', pdf_path=pdf_path)
