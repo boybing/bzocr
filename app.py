@@ -117,7 +117,7 @@ def word1():
     return render_template('pdf.html', pdf_path=pdf_path)
 
 @app.route('/word2', methods=['POST'])
-def word():
+def word2():
     # 获取表单提交的数据
     input = request.form.get('input')
     parent=os.getcwd()
