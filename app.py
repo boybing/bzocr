@@ -116,6 +116,24 @@ def word1():
     pdf_path = url_for('static', filename='file/m.pdf')
     return render_template('pdf.html', pdf_path=pdf_path)
 
+@app.route('/word2', methods=['POST'])
+def word():
+    # 获取表单提交的数据
+    input = request.form.get('input')
+    parent=os.getcwd()
+    os.chdir("static")
+    os.chdir("file")
+    try:
+        os.remove("m.pdf")
+        print(os.getcwd())
+    except Exception as e:
+        print(e)
+    
+    os.system("python xieci3.py "+input)
+    os.chdir(parent)
+    pdf_path = url_for('static', filename='file/m.pdf')
+    return render_template('pdf.html', pdf_path=pdf_path)
+
 @app.route('/mp3', methods=['POST'])
 def mp3():
     # 获取表单提交的数据
