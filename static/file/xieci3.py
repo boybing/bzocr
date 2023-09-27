@@ -26,7 +26,7 @@ WORD_SPACING = 25 # 单词间距
 def draw_text(canvas, x, y, text, font_name, font_size):
     """在画布上绘制文本"""
     canvas.setFont(font_name, font_size)
-    canvas.drawString(x, y, text)
+    canvas.drawString(x, y, text,fill="white")
 
 def draw_pinyin(canvas, x, y, text, font_name, font_size):
     """在画布上绘制拼音"""
@@ -39,7 +39,7 @@ def draw_word(canvas, x, y, word):
     pinyin_list = pinyin(word)
     # 拼接拼音列表为字符串，用空格分隔
     pinyin_str = " ".join([item[0] for item in pinyin_list])
-    #draw_text(canvas, x, y, word, BOLD_FONT_NAME, FONT_SIZE)
+    draw_text(canvas, x, y, word, BOLD_FONT_NAME, FONT_SIZE)
     draw_pinyin(canvas, x, y, pinyin_str, FONT_NAME, FONT_SIZE-20)
 
 def new_page(canvas):
