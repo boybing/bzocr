@@ -26,7 +26,9 @@ WORD_SPACING = 25 # 单词间距
 def draw_text(canvas, x, y, text, font_name, font_size):
     """在画布上绘制文本"""
     canvas.setFont(font_name, font_size)
-    canvas.drawString(x, y, text,fill="white")
+    canvas.setColor(Color.WHITE) # 设置画笔颜色为白色
+    canvas.drawString(x, y, text) # 绘制文本
+    canvas.setColor(Color.BLACK) # 设置画笔颜色为黑色
 
 def draw_pinyin(canvas, x, y, text, font_name, font_size):
     """在画布上绘制拼音"""
